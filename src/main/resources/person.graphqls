@@ -1,0 +1,77 @@
+
+extend type Query {
+
+	# Get all people
+	persons(
+		# Page to return the records
+		page: Int
+		
+		# Size of the pagination
+		size: Int
+		
+		# Filter the people
+		filter: PersonFilter
+		
+		# Order By
+		orderBy: [PersonOrderBy!] = [ID_ASC]
+		
+	): Persons
+
+	# Query details of a person
+	person(id: Int!): Person
+}
+
+extend type Mutation {
+    newPerson(
+  	    firstName: String!
+  	    middleName: String
+  	    lastName: String!
+  	    age: Int!
+    ): Person
+}
+
+# Details of a person
+type Person {
+	# Identificator
+	id: ID!
+	
+	# First Name
+	firstName: String!
+	
+	# Middle Name
+	middleName: String
+	
+	# Last Name
+	lastName: String!
+	
+	# Age
+	age: Int!
+}
+
+type Persons {
+	# Info about pagination 
+	info: Info
+	
+	# Results
+	results: [Person]
+}
+
+input PersonFilter {
+	firstName: String
+	middleName: String
+	lastName: String
+	age: Int
+}
+
+enum PersonOrderBy {
+	ID_ASC
+	ID_DESC
+	FIRST_NAME_ASC
+	FIRST_NAME_DESC
+	MIDDLE_NAME_ASC
+	MIDDLE_NAME_DESC
+	LAST_NAME_ASC
+	LAST_NAME_DESC
+	AGE_ASC
+	AGE_DESC
+}
