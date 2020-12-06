@@ -6,26 +6,23 @@ import org.springframework.stereotype.Component;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 
 import es.jmpalma.api.model.Person;
-import es.jmpalma.api.repository.PersonRepository;
+import es.jmpalma.api.service.PersonService;
 
 @Component
 public class PersonMutation implements GraphQLMutationResolver  {
  
-    @Autowired
-    private PersonRepository repo;
+	@Autowired
+	private PersonService service;
  
     public Person newPerson(String firstName, String middleName, String lastName, Integer age) {
     	
-    	Person person = new Person();
+    	return service.save(Person.builder()
+        		.firstName(firstName)
+        		.middleName(middleName)
+        		.lastName(lastName)
+        		.age(age)
+        		.build());
     	
-    	person.setFirstName(firstName);
-    	person.setMiddleName(middleName);
-    	person.setLastName(lastName);
-    	person.setAge(age);
-    	
-    	person = repo.save(person);
-    	
-        return person;
     }
 
 }

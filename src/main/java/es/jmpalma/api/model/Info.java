@@ -1,5 +1,7 @@
 package es.jmpalma.api.model;
 
+import org.springframework.data.domain.Page;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,4 +33,10 @@ public class Info {
 	 */
 	private Integer size;
 
+	public Info(Page page) {
+		this.count = page.getNumberOfElements();
+		this.total = page.getTotalElements();
+		this.pages = page.getTotalPages();
+		this.size = page.getSize();
+	}
 }

@@ -1,5 +1,8 @@
 package es.jmpalma.api.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
@@ -24,5 +27,13 @@ public enum PersonOrderBy {
 
 	PersonOrderBy(Direction desc, String string) {
 		order = new Order(desc, string);
+	}
+	
+	public static List<Order> getOrderByList(List<PersonOrderBy> orderBy) {
+		List<Order> orderList = new ArrayList<Sort.Order>();
+    	for (PersonOrderBy personOrder : orderBy) {
+			orderList.add(personOrder.getOrder());
+		}
+    	return orderList;
 	}
 }
