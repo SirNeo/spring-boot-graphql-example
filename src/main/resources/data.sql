@@ -3,7 +3,7 @@ INSERT INTO PERSON (FIRST_NAME, MIDDLE_NAME, LAST_NAME, AGE) VALUES
     ('John', null, 'Smith',44),
     ('Steve', null, 'Jones',16),
     ('Tom', null, 'Richards',67);
-    
+
      INSERT INTO person (first_name,last_name,age) VALUES ('Gregory','Wise',65);
     INSERT INTO person (first_name,last_name,age) VALUES ('Chester','Welch',51);
     INSERT INTO person (first_name,last_name,age) VALUES ('Galvin','Fox',56);
