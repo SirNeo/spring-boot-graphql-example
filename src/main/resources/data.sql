@@ -104,3 +104,28 @@ INSERT INTO PERSON (FIRST_NAME, MIDDLE_NAME, LAST_NAME, AGE) VALUES
     INSERT INTO person (first_name,last_name,age) VALUES ('Regan','William',23);
     INSERT INTO person (first_name,last_name,age) VALUES ('Prescott','Joseph',80);
     INSERT INTO person (first_name,last_name,age) VALUES ('Ivy','Wilcox',24);
+
+    drop table user_role;
+    drop table user;
+create table user (
+  id long not null primary key auto_increment,
+  first_name varchar(128) not null,
+  last_name varchar(128) not null,
+  email varchar(128) not null,
+  password varchar(128) not null
+);
+
+
+create table user_role (
+    user_id long not null,
+    name varchar(64) not null,
+    foreign key (user_id) references user(id),
+    primary key (user_id, name)
+);
+
+
+insert into user (id, first_name, last_name, email, password)
+values (1, 'admin', 'admin', 'admin@example.com', '$2a$10$FCyrzMfeXmqf0gzPh9mtaO8a5Tl6bUHviotQIVuHY1xBYANGEbAY6');
+
+insert into user_role (user_id, name)
+values (1, 'USER'), (1, 'ADMIN');

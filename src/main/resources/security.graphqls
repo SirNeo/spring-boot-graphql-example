@@ -1,0 +1,75 @@
+extend type Query {
+	users(
+		page: Int, 
+		size: Int, 
+		filter: UserFilter, 
+		orderBy: [UserOrderBy!] = [ID_ASC]
+	): Users
+	user(id: ID!): User
+    usersCount: Int
+	currentUser: User
+}
+
+
+extend type Mutation {
+	createUser(input: CreateUserInput!): User
+    updateUser(input: UpdateUserInput!): User
+    deleteUser(id: ID!): Boolean
+    updatePassword(input: UpdatePasswordInput!): User
+	login(email: String!, password: String!): User
+}
+
+type User {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    #created: Date
+    roles: [String]
+    token: String
+}
+
+type Users {
+	info: Info
+	results: [User]
+}
+
+type Date {
+    formatString(format: String!): String
+    iso: String
+}
+
+input UserFilter {
+	firstName: String
+	lastName: String
+	email: String
+	role: String
+}
+
+input CreateUserInput {
+	firstName: String!
+	lastName: String!
+	email: String!
+	password: String!
+}
+
+input UpdateUserInput {
+	firstName: String!
+	lastName: String!
+}
+
+input UpdatePasswordInput {
+    originalPassword: String!
+    newPassword: String!
+}
+
+enum UserOrderBy {
+	ID_ASC
+	ID_DESC
+	FIRST_NAME_ASC
+	FIRST_NAME_DESC
+	LAST_NAME_ASC
+	LAST_NAME_DESC
+	EMAIL_ASC
+	EMAIL_DESC
+}

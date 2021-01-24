@@ -9,29 +9,27 @@ import org.springframework.data.domain.Sort.Order;
 
 import lombok.Getter;
 
-public enum PersonOrderBy {
+public enum UserOrderBy {
 
 	ID_ASC(Sort.Direction.ASC, "id"),
 	ID_DESC(Sort.Direction.DESC, "id"),
 	FIRST_NAME_ASC(Sort.Direction.ASC, "firstName"),
 	FIRST_NAME_DESC(Sort.Direction.DESC, "firstName"),
-	MIDDLE_NAME_ASC(Sort.Direction.ASC, "middleName"),
-	MIDDLE_NAME_DESC(Sort.Direction.DESC, "middleName"),
 	LAST_NAME_ASC(Sort.Direction.ASC, "lastName"),
 	LAST_NAME_DESC(Sort.Direction.DESC, "lastName"),
-	AGE_ASC(Sort.Direction.ASC, "age"),
-	AGE_DESC(Sort.Direction.DESC, "age");
+	EMAIL_ASC(Sort.Direction.ASC, "email"),
+	EMAIL_DESC(Sort.Direction.DESC, "email");
 	
 	@Getter
 	private Order order = null;
 
-	PersonOrderBy(Direction desc, String string) {
+	UserOrderBy(Direction desc, String string) {
 		order = new Order(desc, string);
 	}
 	
-	public static List<Order> getOrderByList(List<PersonOrderBy> orderBy) {
+	public static List<Order> getOrderByList(List<UserOrderBy> orderBy) {
 		List<Order> orderList = new ArrayList<Sort.Order>();
-    	for (PersonOrderBy ord : orderBy) {
+    	for (UserOrderBy ord : orderBy) {
 			orderList.add(ord.getOrder());
 		}
     	return orderList;
